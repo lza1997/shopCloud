@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lza.shopadmin.dao.DocEntityProDao">
+    <resultMap id="BaseResultMap" type="com.lza.shopadmin.entity.DocEnProEntity" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="VARCHAR" />
+        <result column="entityid" property="entityid" jdbcType="INTEGER" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="createdby" property="createdby" jdbcType="VARCHAR" />
+        <result column="updatecount" property="updatecount" jdbcType="INTEGER" />
+        <result column="updateby" property="updateby" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="BIGINT" />
+        <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, name, type, entityid, sort, description, status, 
+        create_time, createdby, updatecount, update_time, updateby
+    </sql>
+    
+    <sql id="whereStatement">
+		<where>
+			1 = 1
+			<if test="condition.name != null">
+	          	and a.name like CONCAT(#{condition.name, jdbcType=VARCHAR},'%') 
+	        </if>
+	        and a.entityid = #{condition.entityid}
+		</where>
+	</sql>
+	
+	 <sql id="whereStatement2">
+		<where>
+			1 = 1
+			<if test="condition.name != null">
+	          	and a.name like CONCAT(#{condition.name, jdbcType=VARCHAR},'%') 
+	        </if>
+	        and a.entityid = #{condition.entityid}
+		</where>
+	</sql>
+	
+	<sql id="whereStatement1">
+		<where>
+			1 = 1
+	        and a.entityid = #{entityid}
+		</where>
+	</sql>
+    
+    <!--查询条数-->
+    <select id="getProTotal" parameterType="com.lza.shopadmin.entity.DocEnProEntity" resultType="int">
+        SELECT count(1) FROM shop_doc_entity_property a 
+        <include refid="whereStatement2" />
+    </select>
+
+    <!--查询分页列表-->
+    <select id="getProList" parameterType="com.lza.shopadmin.utils.Pager" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_doc_entity_property a 
+        <include refid="whereStatement" />
+        order by a.id desc
+    </select>
+    
+    <!--查询列表无分页-->
+    <select id="getAllProList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_doc_entity_property a 
+        <include refid="whereStatement1" />
+        order by a.id desc
+    </select>
+
+	<!--根据id获取数据-->
+    <select id="getProById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from shop_doc_entity_property where id = #{id}
+    </select>
+    
+    <!--保存数据-->
+    <insert id="save" parameterType="com.lza.shopadmin.entity.DocEnProEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO shop_doc_entity_property(name, type, entityid, sort, description, status, create_time, createdby)
+        VALUES(#{name},#{type},#{entityid},#{sort},#{description},#{status},#{createTime},#{updateby});
+    </insert>
+    
+    <!--更新数据-->
+    <update id="update" parameterType="com.lza.shopadmin.entity.DocEnProEntity">
+        update shop_doc_entity_property
+        set 
+        name = #{name,jdbcType=VARCHAR},
+        type = #{type,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=BIGINT},
+        updateby = #{updateby,jdbcType=VARCHAR}
+        where id=#{id,jdbcType=INTEGER}
+    </update>
+
+	<!--删除数据-->
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from shop_doc_entity_property where id=#{id}
+    </delete>
+
+</mapper>

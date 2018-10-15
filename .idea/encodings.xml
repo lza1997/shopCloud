@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/mycenter" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mycenter/src/main/resources/application.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myconfig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mygateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shop-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shop-h5" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shop-payment" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shop-user" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lza.shopadmin.dao.DocEntityDao">
+    <resultMap id="BaseResultMap" type="com.lza.shopadmin.entity.DocEnEntity" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="BIGINT" />
+        <result column="createdby" property="createdby" jdbcType="VARCHAR" />
+        <result column="updatecount" property="updatecount" jdbcType="INTEGER" />
+        <result column="update_time" property="updatetime" jdbcType="BIGINT" />
+        <result column="updateby" property="updateby" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, name, code, sort, description, status, 
+        create_time, createdby, updatecount, update_time, updateby
+    </sql>
+    
+    <sql id="whereStatement">
+		<where>
+			1 = 1
+			<if test="condition.name != null">
+	          	and a.name like CONCAT(#{condition.name, jdbcType=VARCHAR},'%') 
+	        </if>
+		</where>
+	</sql>
+	
+	<sql id="whereStatement2">
+		<where>
+			1 = 1
+			<if test="name != null">
+	          	and a.name like CONCAT(#{name, jdbcType=VARCHAR},'%') 
+	        </if>
+		</where>
+	</sql>
+    
+    <!--查询条数-->
+    <select id="getDocEntityTotal" parameterType="com.lza.shopadmin.entity.DocEnEntity" resultType="int">
+        SELECT count(1) FROM shop_doc_entity a 
+        <include refid="whereStatement2" />
+    </select>
+
+    <!--查询分页列表-->
+    <select id="getDocEntityList" parameterType="com.lza.shopadmin.utils.Pager" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_doc_entity a 
+        <include refid="whereStatement" />
+        order by a.id desc
+    </select>
+
+	<!--根据id获取数据-->
+    <select id="getDocEntityById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from shop_doc_entity where id = #{id}
+    </select>
+    
+    <!--保存数据-->
+    <insert id="saveDocEntity" parameterType="com.lza.shopadmin.entity.DocEnEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO shop_doc_entity(name, code, sort, description, status, create_time, createdby)
+        VALUES(#{name},#{code},#{sort},#{description},#{status},#{createTime},#{createdby});
+    </insert>
+    
+    <!--更新数据-->
+    <update id="updateDocEntity" parameterType="com.lza.shopadmin.entity.DocEnEntity">
+        update shop_doc_entity
+        set 
+        name = #{name,jdbcType=VARCHAR},
+        code = #{code,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        update_time = #{updatetime,jdbcType=BIGINT},
+        updateby = #{updateby,jdbcType=VARCHAR}
+        where id=#{id,jdbcType=INTEGER}
+    </update>
+
+	<!--删除数据-->
+    <delete id="deleteDocEntity" parameterType="java.lang.Integer">
+        delete from shop_doc_entity where id=#{id}
+    </delete>
+    
+    <!-- 查询全部实体 -->
+    <select id="getAllDocEntityList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_doc_entity a 
+        order by a.id desc
+    </select>
+    
+    <!--根据id获取数据-->
+    <select id="getDocEntityByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from shop_doc_entity where code = #{entityName}
+    </select>
+
+</mapper>

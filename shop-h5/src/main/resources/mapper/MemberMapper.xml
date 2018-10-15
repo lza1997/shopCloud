@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lza.dao.MemberDao">
+	<resultMap id="BaseResultMap" type="com.lza.entiry.Member">
+		<result column="member_id" property="memberId" jdbcType="INTEGER" />
+		<result column="member_name" property="memberName" jdbcType="VARCHAR" />
+		<result column="member_truename" property="memberTruename" jdbcType="VARCHAR" />
+		<result column="member_avatar" property="memberAvatar" jdbcType="VARCHAR" />
+		<result column="member_sex" property="memberSex" jdbcType="INTEGER" />
+		<result column="member_birthday" property="memberBirthday" jdbcType="BIGINT" />
+		<result column="member_passwd" property="memberPasswd" jdbcType="VARCHAR" />
+		<result column="member_email" property="memberEmail" jdbcType="VARCHAR" />
+		<result column="member_qq" property="memberQq" jdbcType="VARCHAR" />
+		<result column="member_ww" property="memberWw" jdbcType="VARCHAR" />
+		<result column="member_login_num" property="memberLoginNum" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="BIGINT" />
+		<result column="member_login_time" property="memberLoginTime" jdbcType="BIGINT" />
+		<result column="member_old_login_time" property="memberOldLoginTime" jdbcType="BIGINT" />
+		<result column="member_login_ip" property="memberLoginIp" jdbcType="VARCHAR" />
+		<result column="member_old_login_ip" property="memberOldLoginIp" jdbcType="VARCHAR" />
+		<result column="member_openid" property="memberOpenid" jdbcType="VARCHAR" />
+		<result column="member_info" property="memberInfo" jdbcType="VARCHAR" />
+		<result column="member_rank_points" property="memberRankPoints" jdbcType="INTEGER" />
+		<result column="member_consume_points" property="memberConsumePoints" jdbcType="INTEGER" />
+		<result column="available_predeposit" property="availablePredeposit" jdbcType="DECIMAL" />
+		<result column="freeze_predeposit" property="freezePredeposit" jdbcType="DECIMAL" />
+		<result column="inform_allow" property="informAllow" jdbcType="TINYINT" />
+		<result column="is_buy" property="isBuy" jdbcType="TINYINT" />
+		<result column="is_allowtalk" property="isAllowtalk" jdbcType="TINYINT" />
+		<result column="member_state" property="memberState" jdbcType="TINYINT" />
+		<result column="member_credit" property="memberCredit" jdbcType="INTEGER" />
+		<result column="member_snsvisitnum" property="memberSnsvisitnum" jdbcType="INTEGER" />
+		<result column="member_areaid" property="memberAreaid" jdbcType="INTEGER" />
+		<result column="member_cityid" property="memberCityid" jdbcType="INTEGER" />
+		<result column="member_provinceid" property="memberProvinceid" jdbcType="INTEGER" />
+		<result column="member_areainfo" property="memberAreainfo" jdbcType="VARCHAR" />
+		<result column="is_del" property="isDel" jdbcType="VARCHAR" />
+		<result column="sign_code" property="signCode" jdbcType="VARCHAR"/>
+        <result column="sign_code_state" property="signCodeState" jdbcType="TINYINT"/>
+        <result column="member_mobile" property="memberMobile" jdbcType="VARCHAR"/>
+        <result column="member_gradeid" property="memberGradeId" jdbcType="INTEGER" />
+        <result column="member_type" property="memberType" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		member_id,member_name,member_truename,
+		member_avatar,member_sex,member_birthday,
+		member_passwd,member_email,member_qq,
+		member_ww,member_login_num,
+		create_time,member_login_time,member_old_login_time,
+		member_login_ip,member_old_login_ip,
+		member_openid,
+		member_info,
+		<!-- member_sinaopenid,member_sinainfo, -->
+		member_consume_points,member_rank_points,available_predeposit,freeze_predeposit,
+		inform_allow,is_buy,is_allowtalk,member_state,
+		member_credit,member_snsvisitnum,member_areaid,
+		member_cityid,member_provinceid,member_areainfo,
+		member_mobile,member_gradeid,member_type
+	</sql>
+
+	<sql id="whereStatement">
+		<where>
+			1 = 1
+			and a.is_del = 0
+			<if test="condition.memberName != null and condition.memberName != '' ">
+				and a.member_name like CONCAT('%','${condition.memberName}','%' )
+			</if>
+			<if test="condition.memberEmail != null and condition.memberEmail != ''">
+				and a.member_email  like CONCAT('%','${condition.memberEmail}','%' )
+			</if>
+			<if test="condition.memberTruename != null and condition.memberTruename != ''">
+				and a.member_truename  like CONCAT('%','${condition.memberTruename}','%' )
+			</if>
+			<if test="condition.status == 1">
+				and a.inform_allow = 0
+			</if>
+			<if test="condition.status == 2">
+				and a.is_buy = 0
+			</if>
+			<if test="condition.status == 3">
+				and a.is_allowtalk = 0
+			</if>
+			<if test="condition.status == 4">
+				and a.member_state = 0
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="whereStatement2">
+		<where>
+			1 = 1
+			and is_del = 0
+			<if test="memberName != null and memberName != '' ">
+				and member_name  = #{memberName}
+			</if>
+			<if test="memberEmail != null and memberEmail != ''">
+				and member_email  like CONCAT('%','${memberEmail}','%' )
+			</if>
+			<if test="memberTruename != null and memberTruename != ''">
+				and member_truename  like CONCAT('%','${memberTruename}','%' )
+			</if>
+			<!-- 获取指定时间断 -->
+	        <if test="startTime != null and endTime != null ">
+	            and create_time &gt;= #{startTime} and create_time &lt;= #{endTime}
+	        </if>
+			<if test="status == 1">
+				and inform_allow = 0
+			</if>
+			<if test="status == 2">
+				and is_buy = 0
+			</if>
+			<if test="status == 3">
+				and is_allowtalk = 0
+			</if>
+			<if test="status == 4">
+				and member_state = 0
+			</if>
+			<if test="memberOpenid !=null and memberOpenid!=''">
+				and member_openid = #{memberOpenid}
+			</if>
+		</where>
+	</sql>
+	
+
+
+	<!-- 根据ID查询实体 -->
+	<select id="findMemberById" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from shop_member where member_id = #{id,jdbcType=INTEGER} and is_del = 0
+	</select>
+
+</mapper>

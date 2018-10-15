@@ -1,0 +1,10 @@
+<#if docList?exists && docList?size gt 0>
+<ul class="api_list">
+	<#list docList as doc>
+		<li>
+			<span><a href="${contextpath}/docs/docAct.do?doctag&id=${doc.id}&platform=${platform!''}" alt="${doc.tag}" title="${doc.tag}">${doc.tag}</a></span>
+			<p>${doc.name}</p>
+		</li>
+	</#list>
+</ul>
+</#if>

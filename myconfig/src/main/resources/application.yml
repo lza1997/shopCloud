@@ -1,0 +1,27 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/lza/myconfig.git
+          #https://gitee.com/chuanzhizhy/configee43.git
+  rabbitmq:
+    host: 192.168.154.128
+    port: 5672
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true

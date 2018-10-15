@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cart" />
+        <module name="eureka-service" />
+        <module name="gateway" />
+        <module name="mycenter" />
+        <module name="myconfig" />
+        <module name="mygateway" />
+        <module name="order" />
+        <module name="shop" />
+        <module name="shop-admin" />
+        <module name="shop-h5" />
+        <module name="shop-payment" />
+        <module name="shop-user" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cart" target="1.5" />
+      <module name="eureka-service" target="1.5" />
+      <module name="gateway" target="1.5" />
+      <module name="mycenter" target="1.8" />
+      <module name="myconfig" target="1.8" />
+      <module name="mygateway" target="1.8" />
+      <module name="Mygoods-client" target="1.8" />
+      <module name="Mygoods-common" target="1.8" />
+      <module name="Mygoods-server" target="1.8" />
+      <module name="myshop" target="1.8" />
+      <module name="order" target="1.8" />
+      <module name="shop" target="1.8" />
+      <module name="shop-admin" target="1.8" />
+      <module name="shop-h5" target="1.8" />
+      <module name="shop-payment" target="1.8" />
+      <module name="shop-user" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

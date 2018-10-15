@@ -1,0 +1,145 @@
+﻿@charset "utf-8";
+
+.main_visual{height:145px;border-top:1px solid #d7d7d7;overflow:hidden;position:relative; margin:10px; border-radius:8px;}
+.main_image{height:145px;overflow:hidden;position:relative;}
+.main_image ul{width:9999px;height:145px;overflow:hidden;position:absolute;top:0;left:0}
+.main_image li{float:left;width:100%;height:145px;}
+.main_image li span{display:block;width:100%;height:145px}
+.main_image li a{display:block;width:100%;height:145px}
+.main_image li .img_1{background:url('../images/banner1.jpg') center top no-repeat; background-size:cover;}
+.main_image li .img_2{background:url('../images/banner2.jpg') center top no-repeat; background-size:cover;}
+.main_image li .img_3{background:url('../images/banner1.jpg.jpg') center top no-repeat; background-size:cover;}
+.main_image li .img_4{background:url('../images/banner2.jpg.jpg') center top no-repeat; background-size:cover;}
+.main_image li .img_5{background:url('../images/banner1.jpg.jpg') center top no-repeat; background-size:cover;}
+div.flicking_con{position:absolute;left:50%; bottom:5px;z-index:999;width:300px;height:21px;margin:0 0 0 -20px;}
+div.flicking_con a{float:left;width:21px;height:21px;margin:0;padding:0;background:url('../images/btn_main_img.png') 0 0 no-repeat;display:block;text-indent:-1000px}
+div.flicking_con a.on{background-position:0 -21px}
+
+
+.left_xiangxi{width:45%;float:left;margin-left:5px;}
+.left_xiangxi p{color:#555252;margin-bottom:15px;}
+.right_xiangxi{width:45%;float:right;margin-right:5px;}
+.right_xiangxi p{color:#555252;margin-bottom:15px;}
+.duihuan{
+	display:inline-block;
+	line-height:25px;
+	float:left;
+	color:#1B1A1A;
+	}
+.duihuan p{font-size:16px}
+.gengduo{
+	display:inline-block;
+	line-height:25px;
+	float:right;
+	font-size:14px;
+	}
+.gengduo a{color:#D30A0D;}
+
+.con_jz_bottom{
+	width:100%;
+	height:54px;
+	background-color:#2d3740;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	}
+.con_jz_bottom ul{
+	padding-top:7px;
+	}
+.con_jz_bottom ul li{
+	width:33%;
+	height:54px;
+	float:left;
+	display: block;
+
+	}
+.con_jz_bottom ul li a {
+	display: block;
+	text-align: center;
+	color:#FFFCFC;
+	text-decoration:none;
+	}
+.con_jz_bottom ul li a:hover,.con_jz_bottom ul li a:active{
+	color:#EC0F13;
+	}
+.con_jz_bottom ul li:nth-child(1) a:hover span,.con_jz_bottom ul li:nth-child(1) a:active span{
+	color: #ff4146;
+	background-position:0px -28px;
+	}
+.con_jz_bottom ul li:nth-child(2) a:hover span,.con_jz_bottom ul li:nth-child(2) a:active span{
+	color: #ff4146;
+	background-position:-30px -28px;
+	}
+.con_jz_bottom ul li:nth-child(3) a:hover span,.con_jz_bottom ul li:nth-child(3) a:active span{
+	color: #ff4146;
+	background-position:-68px -28px;
+	}
+.con_jz_bottom ul li a span{
+	display: inline-block;
+	background:url(../images/jz4.png) no-repeat 0 0;
+	background-size: 99px 60px;
+	width: 30px;
+	height: 27px;
+	vertical-align: top;
+	}
+.con_jz_bottom ul li:nth-child(1) a span{
+	background-position: 0 0;
+}
+.con_jz_bottom ul li:nth-child(2) a span{
+	background-position: -30px 0;
+}
+.con_jz_bottom ul li:nth-child(3) a span{
+	background-position: -68px 0;
+}
+
+
+.con_jz_bottom ul li a em{
+	display:block;
+	line-height: 15px;
+	height: 15px;
+	vertical-align: top;
+	font-size:14px;
+	font-family:"微软雅黑";
+	font-weight:bold;
+	padding-top:1px;
+	
+}
+.pointsImg img{width:100%;margin-top:45px}
+.pointdet{width:3.5rem;overflow:hidden;margin-top:0.25rem;margin-left:0.25rem;float:left}
+.pointdet a{display:block}
+.pointdet a img{width:3.5rem;height:3.5rem}
+/*底部菜单*/
+.footer-nav {
+	/*display: flex;*/
+	background: #fff;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.footer-nav .flex-item {
+	/*flex: 1;*/
+	color: #fff;
+	font-size: 12px;
+	/*padding: 5px 0;*/
+	width: 33.33%;
+	float: left;
+	display: block;
+	padding: 5px 0;
+}
+
+.footer-nav .flex-item a {
+	color: #000;
+}
+
+.footer-nav .flex-item.active {
+	background: #eaeaea;
+}
+#backTop{position:fixed;right:10px;bottom:60px}
+.jiathis_style_m{display:none;position:fixed;bottom:55px;right:5px;z-index:999;}
+.black{display:none;width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:0.3;z-index:99;}
+

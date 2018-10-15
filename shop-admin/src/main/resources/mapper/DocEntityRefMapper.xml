@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lza.shopadmin.dao.DocEntityRefDao">
+    <resultMap id="BaseResultMap" type="com.lza.shopadmin.entity.DocEnRefEntity" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="docid" property="docid" jdbcType="INTEGER" />
+        <result column="entityid" property="entityid" jdbcType="INTEGER" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="createdby" property="createdby" jdbcType="VARCHAR" />
+        <result column="updatecount" property="updatecount" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="BIGINT" />
+        <result column="updateby" property="updateby" jdbcType="VARCHAR" />
+        <collection property="docen" ofType="com.lza.shopadmin.entity.DocEnEntity" column="id">
+        	<id column="id" property="id" jdbcType="INTEGER" />
+        	<result column="name" property="name" jdbcType="VARCHAR" />
+        	<result column="code" property="code" jdbcType="VARCHAR" />
+        	<result column="description" property="description" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        a.id, a.docid, a.entityid, b.name, b.code, b.description
+    </sql>
+    
+    <sql id="whereStatement">
+		<where>
+			1 = 1 
+			and a.entityid = b.id 
+			and a.docid  = #{condition.docid}
+		</where>
+	</sql>
+	
+	<sql id="whereStatement1">
+		<where>
+			1 = 1 
+			and a.docid  = #{docid}
+			and a.entityid = b.id
+		</where>
+	</sql>
+	
+	 <sql id="whereStatement2">
+		<where>
+			1 = 1 
+			and a.entityid = b.id 
+			and a.docid  = #{condition.docid}
+		</where>
+	</sql>
+    
+    <!--查询条数-->
+    <select id="getRefTotal" parameterType="com.lza.shopadmin.entity.DocEnRefEntity" resultType="int">
+        SELECT count(1) FROM shop_doc_entity_ref a, shop_doc_entity b
+        <include refid="whereStatement2" />
+    </select>
+
+    <!--查询分页列表-->
+    <select id="getRefList" parameterType="com.lza.shopadmin.utils.Pager" resultType="java.util.HashMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_doc_entity_ref a, shop_doc_entity b
+        <include refid="whereStatement" />
+        order by a.id desc
+    </select>
+    
+    <!--查询文档下的所有列表-->
+    <select id="getAllRefList" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_doc_entity_ref a, shop_doc_entity b
+        <include refid="whereStatement1" />
+        order by a.id desc
+    </select>
+
+    <!--保存数据-->
+    <insert id="save" parameterType="com.lza.shopadmin.entity.DocEnRefEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO shop_doc_entity_ref(docid, entityid, create_time, createdby)
+        VALUES(#{docid},#{entityid},#{createTime},#{createdby});
+    </insert>
+    
+	<!--删除数据-->
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from shop_doc_entity_ref where id=#{id}
+    </delete>
+
+</mapper>

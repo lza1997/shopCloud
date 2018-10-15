@@ -1,0 +1,13 @@
+<h1><a href="${contextpath}/docs/docAct.do?docapiList&id=${docInfo.pid}&platform=${platform!''}" >返回<span>API</span></a></h1>
+<#if docList?exists>
+	<ul>
+		<#list docList as doc>
+			<li>
+				<a href="${contextpath}/docs/docAct.do?docapi&id=${doc.id}&platform=${platform!''}" alt="" title="">
+					<div>${doc.tag}</div>
+					<div><p>${doc.name}</p></div>
+				</a>
+			</li>
+		</#list>
+	</ul>
+</#if>
