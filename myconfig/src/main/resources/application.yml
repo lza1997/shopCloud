@@ -8,7 +8,7 @@ spring:
       server:
         git:
           uri: https://gitee.com/lza/myconfig.git
-          #https://gitee.com/chuanzhizhy/configee43.git
+          
   rabbitmq:
     host: 192.168.154.128
     port: 5672
