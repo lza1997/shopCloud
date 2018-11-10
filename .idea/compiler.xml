@@ -18,6 +18,7 @@
         <module name="shop-h5" />
         <module name="shop-payment" />
         <module name="shop-user" />
+        <module name="shopcommon" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -37,6 +38,7 @@
       <module name="shop-h5" target="1.8" />
       <module name="shop-payment" target="1.8" />
       <module name="shop-user" target="1.8" />
+      <module name="shopcommon" target="6" />
     </bytecodeTargetLevel>
   </component>
 </project>
